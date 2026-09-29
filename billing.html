@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/common.css">
+  </head>
+  <body>
+    <div
+      id="container"
+     class="Container"
+    >
+      <img
+        src="images/logo.png"
+        class="Logo"
+        alt="iacsd shopping mall"
+      />
+      <hr />
+      <a href="shopping.html">Go shopping</a> | &nbsp;&nbsp;
+      <a href="billing.html">Billing</a> | &nbsp;&nbsp;
+      <a href="about.html">About Us</a> | &nbsp;&nbsp;
+      <hr />
+      <div
+        id="adDiv"
+        class="AdContainer"
+      >
+        <img src="#"  class="AdImage" alt="Advertisement" />
+      </div>
+    
+      <hr />
+        <h2>Your Bill:</h2>
+      <hr />
+      
+      <div
+        id="pageContentPlaceHolder"
+        class="ContentPlaceHolder">
+        <center>
+          <table id="billingTable" border="1" style="width: 400px;text-align: center;">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Product Name</th>
+                  <th>Product Price</th>
+                </tr>
+              </thead>
+
+              <tbody id="billingTableBody">
+                  
+              </tbody>
+
+          </table>
+
+          <div id="divTotal" style="background-color: skyblue;">
+
+          </div>
+        </center>
+      </div>
+      
+      </div>
+      <hr />
+      <center>
+        <h4> developed by iacsd. 2026</h4>
+
+        <a href="linkedin.com">
+            <img src="images/linkedin.png" alt="linkedIn Page Link" class="SocialMediaIcon">
+        </a>
+
+        &nbsp;
+        
+        <a href="facebook.com">
+            <img src="images/fb.png" alt="facebook Page Link" 
+            class="SocialMediaIcon">
+        </a>
+
+        &nbsp; 
+        
+         <a href="instagram.com">
+            <img src="images/insta.png" alt="Instagram Page Link" class="SocialMediaIcon">
+        </a>
+
+       </center>
+      <hr />
+    </div>
+
+    <script>
+
+        function ShowBill()
+        {
+           var refTodivTotal = document.getElementById("divTotal");
+
+          var productsPurchasedInString = localStorage.getItem("productPurchased");
+         
+        
+          if(productsPurchasedInString!=undefined && 
+             productsPurchasedInString!=null)
+             {
+              var productsPurchased = JSON.parse(productsPurchasedInString);
+
+              var refTobillingTableBody = document.getElementById("billingTableBody");
+
+              var total = 0;
+
+              for(i=0; i<productsPurchased.length;i++)
+              {
+                  var product = productsPurchased[i];
+
+                  total = total + product.Price;
+
+                  var billedItemUI = `<tr>
+                                        <td>${i + 1}</td>
+                                        <td>${product.Title}</td>
+                                        <td>${product.Price}</td>
+                                      </tr>`;
+
+                  refTobillingTableBody.innerHTML = 
+                    refTobillingTableBody.innerHTML + billedItemUI;
+              }
+              refTodivTotal.innerHTML = `<h2>Total: ${total} INR</h2>
+                                          <input type="button" value="Pay" 
+                                            onclick="Pay()"/>`;
+
+             }
+             else
+             {
+              alert("Kuch toh purchase kar!");
+              window.location.href = "shopping.html";
+             }
+        }
+
+        function Pay()
+        {
+          alert("Assuming you paid over payment gateway after this .. redirecting to shopping page!");
+          localStorage.removeItem("productPurchased");
+          window.location.href = "shopping.html";
+        }
+
+        ShowBill();
+
+    </script>
+  </body>
+</html>

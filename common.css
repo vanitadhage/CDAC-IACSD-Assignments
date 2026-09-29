@@ -1,0 +1,36 @@
+.SocialMediaIcon{
+    height: 50px;
+    width: 50px;
+}
+
+.ContentPlaceHolder{
+    width: 98%;
+    /* border: 5px solid blue; */
+    /* Above line about border is shothand syntax for below 3 line! */
+    border-width: 5px;
+    border-color: blue;
+    border-style: solid;
+    margin: 5px
+}
+
+.AdImage {
+    height: 50px;
+    width: 100%
+}
+
+.AdContainer{
+    height: 50px;
+    width: 100%;
+    background-color: burlywood
+}
+.Logo{
+    height: 100px;
+    width: 100px
+}
+
+.Container{
+    margin: 10px;
+    width: 98%;
+    border: 5px black solid;
+    padding: 5px
+}
